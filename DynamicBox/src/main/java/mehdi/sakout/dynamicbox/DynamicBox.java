@@ -171,7 +171,7 @@ public class DynamicBox {
     }
 
     public void hideAll(){
-        ArrayList<View> views =  new ArrayList<View>(mDefaultViews);
+        final ArrayList<View> views =  new ArrayList<View>(mDefaultViews);
         views.addAll(mCustomViews);
         if(mSwitcher!=null){
             Animation outAnimation = mSwitcher.getOutAnimation();
