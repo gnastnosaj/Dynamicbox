@@ -170,13 +170,13 @@ public class DynamicBox {
     }
 
     public void hideAll(){
+        if(mSwitcher!=null){
+            mSwitcher.setDisplayedChild(1);
+        }
         ArrayList<View> views =  new ArrayList<View>(mDefaultViews);
         views.addAll(mCustomViews);
         for(View view : views){
             view.setVisibility(View.GONE);
-        }
-        if(mSwitcher!=null){
-            mSwitcher.setDisplayedChild(1);
         }
     }
     private void show(String tag){
