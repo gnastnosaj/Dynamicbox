@@ -213,6 +213,25 @@ public class DynamicBox {
             }
         }
         if(mSwitcher!=null && mSwitcher.getDisplayedChild()!=0){
+            Animation outAnimation = mSwitcher.getOutAnimation();
+            if(outAnimation!=null) {
+                outAnimation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+            }
             mSwitcher.setDisplayedChild(0);
         }
     }
