@@ -8,6 +8,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.AbsListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -170,13 +171,35 @@ public class DynamicBox {
     }
 
     public void hideAll(){
-        if(mSwitcher!=null){
-            mSwitcher.setDisplayedChild(1);
-        }
         ArrayList<View> views =  new ArrayList<View>(mDefaultViews);
         views.addAll(mCustomViews);
-        for(View view : views){
-            view.setVisibility(View.GONE);
+        if(mSwitcher!=null){
+            Animation outAnimation = mSwitcher.getOutAnimation();
+            if(outAnimation!=null) {
+                outAnimation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        for(View view : views){
+                            view.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+            }else {
+                for(View view : views){
+                    view.setVisibility(View.GONE);
+                }
+            }
+            mSwitcher.setDisplayedChild(1);
         }
     }
     private void show(String tag){
